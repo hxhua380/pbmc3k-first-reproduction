@@ -28,16 +28,17 @@ def save_plot(adata):
     """画 UMAP 图并保存到 results 文件夹"""
     RESULTS_DIR.mkdir(exist_ok=True)
 
-    sc.pl.umap(
+    fig = sc.pl.umap(
         adata,
         color="cluster",
         legend_loc="on data",
         title="PBMC3k UMAP clusters",
         show=False,
+        return_fig=True
     )
 
-    plt.savefig(OUTPUT_FIGURE, dpi=150, bbox_inches="tight")
-    plt.close()
+    fig.savefig(OUTPUT_FIGURE, dpi=150, bbox_inches="tight")
+    plt.close(fig)
 
 
 def main():
